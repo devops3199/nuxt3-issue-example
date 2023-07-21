@@ -33,14 +33,14 @@ const { data, error } = await useAsyncData("init", async () => {
   }
 
   /* Case 1 - Working 👍 */
+  // const [news, jobs] = await Promise.all([fetchNews(), fetchJobs()]);
+
+  /* Case 2 - Working 👍 but I need to pass cookies when ssr */
   // const news = await $fetch<any>("https://api.hnpwa.com/v0/news/1.json");
 
   // if (news.length > 0) {
   //   jobs = await $fetch<any>("https://api.hnpwa.com/v0/jobs/1.json");
   // }
-
-  /* Case 2 - Working 👍 */
-  // const [news, jobs] = await Promise.all([fetchNews(), fetchJobs()]);
 
   return { news, jobs };
 });
