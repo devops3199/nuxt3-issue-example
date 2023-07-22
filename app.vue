@@ -26,9 +26,8 @@ const nuxtApp = useNuxtApp();
 
 const { data, error } = await useAsyncData("init", async () => {
   let jobs: any = [];
-  let news: any = [];
 
-  news = await fetchNews();
+  const news = await fetchNews();
 
   // Fixed Version
   await nuxtApp.runWithContext(async () => {
