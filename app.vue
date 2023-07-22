@@ -22,15 +22,20 @@
 import { fetchNews } from "~/service/news";
 import { fetchJobs } from "~/service/jobs";
 
+const nuxtApp = useNuxtApp();
+
 const { data, error } = await useAsyncData("init", async () => {
   let jobs: any = [];
+  let news: any = [];
 
-  // Error ❌
-  const news = await fetchNews();
+  news = await fetchNews();
 
-  if (news.length > 0) {
-    jobs = await fetchJobs();
-  }
+  // Fixed Version
+  await nuxtApp.runWithContext(async () => {
+    if (news.length > 0) {
+      jobs = await fetchJobs();
+    }
+  });
 
   /* Case 1 - Working 👍 */
   // const [news, jobs] = await Promise.all([fetchNews(), fetchJobs()]);
